@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Sample";
+}
+
+<div data-detail="SamplePort">
+    <h1 data-field="SamplePort.Title" class="yuuko-title"></h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p><small>Published on $SamplePort.Time <a href="/admin/sample/$SamplePort.ID">Edit</a></small></p>
+    }
+    else
+    {
+        <p><small>Published on $SamplePort.Time</small></p>
+    }
+    <h2>Summary</h2>
+    <div data-field="SamplePort.Summary"></div>
+    <h2>Description</h2>
+    <div data-field="SamplePort.Content"></div>
+    <h2>Downloads</h2>
+    <p>
+        <a target="_blank" href="$SamplePort.Url">Download on GitHub</a>
+    </p>
+    <h2>Comments</h2>
+    <div>
+        <div id="disqus_thread"></div>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</div>
+
+<script>
+    Detail.SamplePort = @Request.RequestContext.RouteData.Values["id"];
+</script>

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Samples";
+}
+<h2>Samples</h2>
+<div data-collection="SampleListPort" data-expression="flow" data-identifier="ID">
+    <div class="template samplelistport">
+        <hr />
+        <h3><a href="/samples/$SampleListPort.ID" data-field="SampleListPort.Title"></a></h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p><small>Published on $SampleListPort.Time <a href="javascript:DeletePort('SamplePort', $SampleListPort.ID)">Delete</a></small></p>
+        }
+        else
+        {
+            <p><small>Published on $SampleListPort.Time</small></p>
+        }
+        <div data-field="SampleListPort.Summary"></div>
+    </div>
+</div>

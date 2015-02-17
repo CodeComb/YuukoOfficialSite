@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Yuuko Library</title>
+    <link href="/Styles/yuuko.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/codemirror.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="/Scripts/yuuko.js"></script>
+    <script src="/yuuko/js"></script>
+    <script src="/Scripts/yuuko.lib.js"></script>
+    <script src="/Scripts/yuuko.extend.js"></script>
+</head>
+<body>
+    <div class="yuuko-container">
+        <p>
+            <img src="~/Images/logo.png" style="height: 70px" />
+        </p>
+        <div class="yuuko-nav">
+            <a href="/" class="yuuko-nav-item @(Request.RawUrl == "/"?"active" :"")">HOME</a>
+            <a href="/documents" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="documents"?" active" :"")">DOCUMENTS</a>
+            <a href="/samples" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="samples"?" active" :"")">SAMPLES</a>
+            <a href="/logs" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="logs"?" active" :"")">CHANGE LOG</a>
+            <a href="/issue" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="issue"?" active" :"")">ISSUE</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/admin" class="yuuko-nav-item @(Request.RawUrl == "/admin"?"active" :"")">CREATE A DOCUMENT</a>
+                <a href="/admin/sample" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()== "sample" ? " active" :"")">CREATE A SAMPLE</a>
+            }
+        </div>
+        <div style="clear: both"></div>
+        <div class="yuuko-content">
+            @RenderBody()
+        </div>
+        <footer>
+            Copyright © 2015 Code Comb Inc. All rights reserved.
+        </footer>
+    </div>
+    <script>
+        var YuukoToken = '@Session["YuukoToken"]';
+    </script>
+</body>
+</html>

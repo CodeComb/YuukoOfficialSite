@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Log";
+}
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <h1 class="yuuko-title">Creating a change log</h1>
+}
+else
+{
+    <h1 class="yuuko-title">Editing the change log</h1>
+}
+<div data-detail="LogPort" data-method="@(Request.RequestContext.RouteData.Values["id"]==null? "insert" : "edit")">
+    <p><input type="text" class="textbox" data-field="LogPort.Version" placeholder="Version" style="width:400px" /></p>
+    <p>
+        Details:
+        <br />
+        <textarea id="content" data-field="LogPort.Content"></textarea>
+    </p>
+    @if (Request.RequestContext.RouteData.Values["id"] == null)
+    {
+        <p><input type="button" class="button button-def" value="Create" onclick="InsertPort('LogPort')" /></p>
+    }
+    else
+    {
+        <p><input type="button" class="button button-def" value="Edit" onclick="EditPort('LogPort')" /></p>
+    }
+</div>
+
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <script>
+        CKEDITOR.replace("content");
+    </script>
+}
+else
+{
+    <script>
+        Detail.LogPort = @Request.RequestContext.RouteData.Values["id"];
+    </script>
+}

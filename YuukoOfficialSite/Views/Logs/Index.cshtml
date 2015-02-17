@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Change Logs";
+}
+
+<h1 class="yuuko-title">Change logs</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <p><a href="/admin/log">Create a new version</a></p>
+}
+<div data-collection="LogListPort" data-identifier="ID">
+    <div class="template loglistport">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p><a href="javascript: ToggleLog('#log-$LogListPort.ID')">Version $LogListPort.Version</a> <small>on $LogListPort._Time <a href="/admin/log/$LogListPort.ID">Edit</a> <a href="javascript: DeletePort('LogPort', $LogListPort.ID)">Delete</a></small></p>
+        }
+        else
+        {
+            <p><a href="javascript: ToggleLog('#log-$LogListPort.ID')">Version $LogListPort.Version</a> <small>on $LogListPort._Time</small></p>
+        }
+        <div id="log-$LogListPort.ID" data-field="LogListPort.Content"></div>
+    </div>
+</div>

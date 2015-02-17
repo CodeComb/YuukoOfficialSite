@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<table>
+    <tr>
+        <td style="width: 35%;">
+            <img src="~/Images/logo-large.png" width="300" />
+        </td>
+        <td class="yuuko-description">
+            <h1>Yuuko</h1>
+            <p>The Yuuko library provides easy access to datasource from fronted by mapping logistic attributes. To put it in a ASP.Net MVC application or Web Forms. The library will decrease backstage coding workload. You can just build fronted and models to reach some basic web logics without backstage development.</p>
+            <p><a href="/home/start" class="yuuko-button blue">Getting started</a> <a href="https://github.com/kagamine/Yuuko" class="yuuko-button">Fork on GitHub</a></p>
+        </td>
+    </tr>
+</table>
+<h2>Installation</h2>
+<p>To install Yuuko, run the following command in the Package Manager Console</p>
+<div class="highlight">
+    <pre><code class="language-text" data-lang="text"><span>PM> Install-Package Yuuko</span></code></pre>
+</div>
+<h2>Simple Usage</h2>
+<p>To create a ASP.Net MVC application, and install Yuuko by Nuget Package Manager.</p>
+<p>Right click on your project to add a OWIN Startup class into your project, and puts the highlighted line into it.</p>
+<div class="highlight">
+    <pre><code class="language-clike" data-lang="clike">using Microsoft.Owin;
+using Owin;
+[assembly: OwinStartup(typeof(YuukoOfficialSite.Startup))]
+namespace YuukoOfficialSite
+{
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+<span class="hll">            app.MapYuuko();</span>        }
+    }
+}</code></pre>
+</div>
+<p>To create a class inherit from <code>PortsContext</code>, and puts the following lines into it.</p>
+<div class="highlight">
+    <pre><code class="language-clike" data-lang="clike">using System.Collections.Generic;
+using CodeComb.Yuuko;
+using CodeComb.Yuuko.Schema;
+
+namespace YuukoOfficialSite.Models
+{
+    public class YuukoPorts : PortsContext
+    {
+        public YuukoPorts()
+        {
+            DataSource = new List&lt;string&gt;();
+            DataSource.Add("Hello Yuuko");
+            DataSource.Add("Hello C#");
+            DataSource.Add("Hello Code Comb");
+            DataSource.Add("Hello World");
+            DataSource.Add("blablabla");
+            DataSource.Add("test");
+            DataSource.Add("hello");
+            DataSource.Add("how are you");
+            DataSource.Add("fine, thank you");
+            DataSource.Add("nice to meet you");
+            DataSource.Add("nice to meet you, too");
+        }
+
+        [CollectionPort]
+        [Binding("DataSource")]
+        public List&lt;dynamic&gt; TestPort { get; set; }
+
+        [OrderBy("it asc")]
+        [Paging(10)]
+        [Select("new(it as Text)")]
+        public List&lt;string&gt; DataSource { get; set; }
+    }
+}</code></pre>
+</div>
+<p>Now, you can build html files with yuuko ports, lets have a try!</p>
+<p>To create a hello.html into the current project, and make a reference to <code>jquery.js</code> and <code>yuuko.js</code></p>
+<div class="highlight">
+    <pre><code class="language-html" data-lang="html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="~/Scripts/yuuko.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div data-collection="TestPort" data-method="flow"&gt;
+            &lt;p class="template testport" data-field="Text"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<p>Run the application you will get the following result.</p>
+<div class="highlight">
+    <pre><code class="language-text" data-lang="text">blablabla
+fine, thank you
+hello
+Hello C#
+Hello Code Comb
+Hello World
+Hello Yuuko
+how are you
+nice to meet you
+nice to meet you, too</code></pre>
+</div>
+<p>Yuuko will load the next page contents when you scroll to bottom.</p>
+<p>At last, Yuuko can work in with Entity Framework also, and more features please refer to documents and samples.</p>

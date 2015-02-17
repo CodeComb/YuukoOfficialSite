@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Sample";
+}
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <h1 class="yuuko-title">Creating a sample</h1>
+}
+else
+{
+    <h1 class="yuuko-title">Editing the sample</h1>
+}
+<div data-detail="SamplePort" data-method="@(Request.RequestContext.RouteData.Values["id"]==null? "insert" : "edit")">
+    <p><input type="text" class="textbox" data-field="SamplePort.Title" placeholder="Sample Title" style="width:400px" /></p>
+    <p><input type="text" class="textbox" data-field="SamplePort.Url" placeholder="Download URL" style="width:400px" /></p>
+    <p>Summary<br /><textarea id="summary" data-field="SamplePort.Summary"></textarea></p>
+    <p>Content<br /><textarea id="content" data-field="SamplePort.Content"></textarea></p>
+    @if (Request.RequestContext.RouteData.Values["id"] == null)
+    {
+        <p><input type="button" class="button button-def" value="Create" onclick="InsertPort('SamplePort')" /></p>
+    }
+    else
+    {
+        <p><input type="button" class="button button-def" value="Edit" onclick="EditPort('SamplePort')" /></p>
+    }
+</div>
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <script>
+        CKEDITOR.replace("summary");
+        CKEDITOR.replace("content");
+    </script>
+}
+else
+{
+    <script>
+        Detail.SamplePort = @Request.RequestContext.RouteData.Values["id"];
+    </script>
+}
