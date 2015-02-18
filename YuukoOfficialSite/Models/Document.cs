@@ -19,6 +19,7 @@ namespace YuukoOfficialSite.Models
         [StringLength(64)]
         public string Title { get; set; }
 
+        [ForeignKey("Father")]
         public int? FatherID { get; set; }
 
         [JsonIgnore]
