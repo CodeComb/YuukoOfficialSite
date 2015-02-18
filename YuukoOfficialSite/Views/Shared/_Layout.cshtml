@@ -26,7 +26,7 @@
             <a href="/issue" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="issue"?" active" :"")">ISSUE</a>
             @if (User.Identity.IsAuthenticated)
             {
-                <a href="/admin" class="yuuko-nav-item @(Request.RawUrl == "/admin"?"active" :"")">CREATE A DOCUMENT</a>
+                <a href="/admin/document" class="yuuko-nav-item @(Request.RawUrl == "/admin"?"active" :"")">CREATE A DOCUMENT</a>
                 <a href="/admin/sample" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()== "sample" ? " active" :"")">CREATE A SAMPLE</a>
             }
         </div>

@@ -12,8 +12,7 @@ namespace YuukoOfficialSite.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        [Route("admin/{id?}")]
-        public ActionResult Index(int? id)
+        public ActionResult Document(int? id)
         {
             return View();
         }
@@ -22,7 +21,7 @@ namespace YuukoOfficialSite.Controllers
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "admin");
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
