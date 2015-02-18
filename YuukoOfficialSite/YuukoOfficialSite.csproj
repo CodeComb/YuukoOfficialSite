@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="CodeComb.Yuuko, Version=0.9.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Yuuko.0.9.8\lib\net45\CodeComb.Yuuko.dll</HintPath>
+      <HintPath>..\packages\Yuuko.0.9.9\lib\net45\CodeComb.Yuuko.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -305,8 +305,7 @@
     <Content Include="Scripts\ckeditor\skins\moono\images\mini.png" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.yuuko-0.9.7.min.js" />
-    <Content Include="Scripts\jquery.yuuko-0.9.8.min.js" />
+    <Content Include="Scripts\jquery.yuuko-0.9.9.min.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Styles\highlight.css" />
     <Content Include="Styles\yuuko.css" />

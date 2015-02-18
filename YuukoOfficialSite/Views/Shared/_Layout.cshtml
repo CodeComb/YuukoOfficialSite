@@ -7,7 +7,7 @@
     <link href="/Styles/yuuko.css" rel="stylesheet" type="text/css" />
     <link href="/Styles/highlight.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="/Scripts/jquery.yuuko-0.9.8.min.js"></script>
+    <script src="/Scripts/jquery.yuuko-0.9.9.min.js"></script>
     <script src="/Scripts/ckeditor/ckeditor.js"></script>
     <script src="/yuuko/js"></script>
     <script src="/Scripts/lib.js"></script>
@@ -20,7 +20,7 @@
         </p>
         <div class="yuuko-nav">
             <a href="/" class="yuuko-nav-item @(Request.RawUrl == "/"?"active" :"")">HOME</a>
-            <a href="/documents" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="documents"?" active" :"")">DOCUMENTS</a>
+            <a href="/documents" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()== "documents" ? " active" :"")">DOCUMENTS</a>
             <a href="/samples" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="samples"?" active" :"")">SAMPLES</a>
             <a href="/logs" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="logs"?" active" :"")">CHANGE LOG</a>
             <a href="/issue" class="yuuko-nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="issue"?" active" :"")">ISSUE</a>
