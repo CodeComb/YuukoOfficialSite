@@ -12,7 +12,8 @@ namespace YuukoOfficialSite.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Index()
+        [Route("admin/{id?}")]
+        public ActionResult Index(int? id)
         {
             return View();
         }

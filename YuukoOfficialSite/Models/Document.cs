@@ -19,7 +19,6 @@ namespace YuukoOfficialSite.Models
         [StringLength(64)]
         public string Title { get; set; }
 
-        [JsonIgnore]
         public int? FatherID { get; set; }
 
         [JsonIgnore]
@@ -27,7 +26,6 @@ namespace YuukoOfficialSite.Models
 
         public string Content { get; set; }
 
-        [JsonIgnore]
         public int PRI { get; set; }
 
         [JsonIgnore]

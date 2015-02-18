@@ -22,7 +22,7 @@ function ToggleLog(id)
 function MakeCategory(obj, selector) {
     if (obj.length > 0)
     {
-        for (var i = 0; i < selector.length; i++) {
+        for (var i = 0; i < obj.length; i++) {
             $(selector).append('<li><a href="javascript:ShowDocument(' + obj[i].ID + ')">' + obj[i].Title + '</a></li>');
             if (obj.Children != null) {
                 $(selector).append('<ul id="doc-' + obj[i].ID + '"></ul>');
@@ -34,7 +34,7 @@ function MakeCategory(obj, selector) {
 
 function ShowDocument(id)
 {
-    history.pushState(null, "Documents", "documents/"+id);
+    history.pushState(null, "Documents", "/documents/"+id);
     DetailLocks.DocumentPort = false;
     Detail.DocumentPort = id;
     LoadFromDetailPort("DocumentPort");
@@ -119,4 +119,27 @@ $(document).ready(function () {
             MakeCategory(data, $("#doc-root"));
         });
     }
+
+    DetailEvents.DocumentPort.onInserted = function (result) {
+        if (result) {
+            window.location = "/documents";
+        }
+        else {
+            alert("The sample has been inserted failed.");
+        }
+    };
+    DetailEvents.DocumentPort.onLoaded = function () {
+        CKEDITOR.replace("content");
+    };
+    DetailEvents.DocumentPort.onEdited = function () {
+        window.location = "/documents/"+Detail.DocumentPort;
+    };
+    DetailEvents.DocumentPort.onDeleted = function (key, result) {
+        if (!result) {
+            alert("Delete failed");
+        }
+        else {
+            location.reload();
+        }
+    };
 });

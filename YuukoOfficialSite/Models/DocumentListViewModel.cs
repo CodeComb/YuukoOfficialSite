@@ -11,9 +11,12 @@ namespace YuukoOfficialSite.Models
         {
             ID = Model.ID;
             Title = Model.Title;
-            Children = new List<DocumentListViewModel>();
-            foreach (var c in Model.Children)
-                Children.Add(new DocumentListViewModel(c));
+            if (Model.Children != null)
+            {
+                Children = new List<DocumentListViewModel>();
+                foreach (var c in Model.Children)
+                    Children.Add(new DocumentListViewModel(c));
+            }
         }
 
         public int ID { get; set; }

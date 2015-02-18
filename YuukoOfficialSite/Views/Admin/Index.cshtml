@@ -3,5 +3,43 @@
     ViewBag.Title = "Documents";
 }
 
-<h2>Index</h2>
-
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <h1 class="yuuko-title">Creating a document</h1>
+}
+else
+{
+    <h1 class="yuuko-title">Editing the document</h1>
+}
+<div data-detail="DocumentPort" data-method="@(Request.RequestContext.RouteData.Values["id"]==null? "insert" : "edit")">
+    <p><input type="text" class="textbox" data-field="DocumentPort.Title" placeholder="Document Title" style="width:400px" /></p>
+    <p><input type="text" class="textbox" data-field="DocumentPort.PRI" placeholder="PRI" style="width:400px" /></p>
+    <p>
+        Father:
+        <br />
+        <select data-collection="DocumentListPort" data-field="DocumentPort.FatherID">
+            <option class="template documentlistport" value="$DocumentListPort.ID" data-field="DocumentListPort.Title">Null</option>
+        </select>
+    </p>
+    <p>Content<br /><textarea id="content" data-field="DocumentPort.Content"></textarea></p>
+    @if (Request.RequestContext.RouteData.Values["id"] == null)
+    {
+        <p><input type="button" class="button button-def" value="Create" onclick="InsertPort('DocumentPort')" /></p>
+    }
+    else
+    {
+        <p><input type="button" class="button button-def" value="Edit" onclick="EditPort('DocumentPort')" /></p>
+    }
+</div>
+@if (Request.RequestContext.RouteData.Values["id"] == null)
+{
+    <script>
+        CKEDITOR.replace("content");
+    </script>
+}
+else
+{
+    <script>
+        Detail.DocumentPort = @Request.RequestContext.RouteData.Values["id"];
+    </script>
+}
