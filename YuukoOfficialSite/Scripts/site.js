@@ -9,7 +9,6 @@
 		$(".yuuko-nav-hide").width($(this).outerWidth() - 1);
 	});
 }
-
 window.onresize = function () {
 	NavFix();
 };
@@ -18,13 +17,12 @@ function ToggleLog(id)
 {
     $(id).toggle();
 }
-
 function MakeCategory(obj, selector) {
     if (obj.length > 0)
     {
         for (var i = 0; i < obj.length; i++) {
             $(selector).append('<li><a href="javascript:ShowDocument(' + obj[i].ID + ')">' + obj[i].Title + '</a></li>');
-            if (obj.Children != null) {
+            if (obj[i].Children != null) {
                 $(selector).append('<ul id="doc-' + obj[i].ID + '"></ul>');
                 MakeCategory(obj[i].Children, "#doc-" + obj[i].ID);
             }
@@ -41,7 +39,31 @@ function ShowDocument(id)
     $("#hide").show();
 }
 
+function Highlight()
+{
+    $('.highlight').each(function () {
+        var x = $(this).children().children().attr('class');
+        $(this).children().children().remove(x);
+        x = x.substring(x.indexOf('-') + 1);
+        $(this).children().children().addClass(x);
+    });
+    $('.ckeditor-code').unbind().each(function () {
+        var dom = $(this);
+        dom.removeClass('ckeditor-code');
+        var inner = '<code>' + $(this).html() + '</code>';
+        var html = '<div class="highlight"><pre>' + inner + '</pre></div>';
+        dom[0].outerHTML = html;
+    });
+    $('pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+
+    hljs.initHighlightingOnLoad();
+}
+
 $(document).ready(function () {
+    Highlight();
+
     if ($("#disqus_thread").length > 0)
     {
         var disqus_shortname = 'yuuko';
@@ -62,10 +84,12 @@ $(document).ready(function () {
         $("#content").val(CKEDITOR.instances.content.getData());
     };
     DetailEvents.SamplePort.onLoaded = function () {
+        Highlight();
         CKEDITOR.replace("summary");
         CKEDITOR.replace("content");
     };
     DetailEvents.LogPort.onLoaded = function () {
+        Highlight();
         CKEDITOR.replace("content");
     };
     DetailEvents.LogPort.onEditing = function () {
@@ -129,6 +153,7 @@ $(document).ready(function () {
         }
     };
     DetailEvents.DocumentPort.onLoaded = function () {
+        Highlight();
         CKEDITOR.replace("content");
     };
     DetailEvents.DocumentPort.onEdited = function () {
@@ -141,5 +166,11 @@ $(document).ready(function () {
         else {
             location.reload();
         }
+    };
+    DetailEvents.DocumentPort.onEditing = function () {
+        $("#content").val(CKEDITOR.instances.content.getData());
+    };
+    DetailEvents.DocumentPort.onInserting = function () {
+        $("#content").val(CKEDITOR.instances.content.getData());
     };
 });

@@ -3,6 +3,11 @@
     ViewBag.Title = "Documents";
 }
 
+<style>
+    .template.documentlistport {
+        display:block !important;
+    }
+</style>
 @if (Request.RequestContext.RouteData.Values["id"] == null)
 {
     <h1 class="yuuko-title">Creating a document</h1>
@@ -15,7 +20,7 @@ else
     <p><input type="text" class="textbox" data-field="DocumentPort.Title" placeholder="Document Title" style="width:400px" /></p>
     <p><input type="text" class="textbox" data-field="DocumentPort.PRI" placeholder="PRI" style="width:400px" /></p>
     <p>
-        Father:
+        Father
         <br />
         <select data-collection="DocumentListPort" data-field="DocumentPort.FatherID">
             <option class="template documentlistport" value="$DocumentListPort.ID" data-field="DocumentListPort.Title">Null</option>
