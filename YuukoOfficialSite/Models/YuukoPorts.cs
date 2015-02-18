@@ -23,7 +23,7 @@ namespace YuukoOfficialSite.Models
         #endregion
 
         #region 数据源
-        [Where("ID = null")]
+        [Where("FatherID = null")]
         [OrderBy("PRI desc")]
         public DbSet<Document> DocumentListSource { get; set; }
 

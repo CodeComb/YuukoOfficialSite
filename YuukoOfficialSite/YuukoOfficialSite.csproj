@@ -307,7 +307,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\yuuko.js" />
     <Content Include="Scripts\yuuko.lib.js" />
-    <Content Include="Styles\codemirror.css" />
     <Content Include="Styles\yuuko.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -315,6 +314,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CKEditorController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\SamplesController.cs" />
@@ -354,6 +354,7 @@
     <Content Include="Views\Samples\Show.cshtml" />
     <Content Include="Views\Logs\Index.cshtml" />
     <Content Include="Views\Admin\Log.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

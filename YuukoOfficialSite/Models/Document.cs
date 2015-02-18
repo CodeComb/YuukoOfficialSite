@@ -19,6 +19,7 @@ namespace YuukoOfficialSite.Models
         [StringLength(64)]
         public string Title { get; set; }
 
+        [JsonIgnore]
         public int? FatherID { get; set; }
 
         [JsonIgnore]
@@ -29,6 +30,16 @@ namespace YuukoOfficialSite.Models
         [JsonIgnore]
         public int PRI { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Document> Children { get; set; }
+
+        [AutoTime]
+        public DateTime LastUpdateTime { get; set; }
+
+        [NotMapped]
+        public string _LastUpdateTime
+        {
+            get { return LastUpdateTime.ToString("MM-dd-yyyy HH:mm"); }
+        }
     }
 }

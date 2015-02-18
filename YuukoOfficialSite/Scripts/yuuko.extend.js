@@ -19,13 +19,38 @@ function ToggleLog(id)
     $(id).toggle();
 }
 
+function MakeCategory(obj, selector) {
+    if (obj.length > 0)
+    {
+        for (var i = 0; i < selector.length; i++) {
+            $(selector).append('<li><a href="javascript:ShowDocument(' + obj[i].ID + ')">' + obj[i].Title + '</a></li>');
+            if (obj.Children != null) {
+                $(selector).append('<ul id="doc-' + obj[i].ID + '"></ul>');
+                MakeCategory(obj[i].Children, "#doc-" + obj[i].ID);
+            }
+        }
+    }
+}
+
+function ShowDocument(id)
+{
+    history.pushState(null, "Documents", "documents/"+id);
+    DetailLocks.DocumentPort = false;
+    Detail.DocumentPort = id;
+    LoadFromDetailPort("DocumentPort");
+    $("#hide").show();
+}
+
 $(document).ready(function () {
-    var disqus_shortname = 'yuuko';
-    (function () {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+    if ($("#disqus_thread").length > 0)
+    {
+        var disqus_shortname = 'yuuko';
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    }
 
     NavFix();
     DetailEvents.SamplePort.onEditing = function () {
@@ -77,7 +102,7 @@ $(document).ready(function () {
         }
     };
     DetailEvents.LogPort.onEdited = function () {
-        alert("The change log has been edited successfully.");
+        window.location = "/logs";
     };
     DetailEvents.LogPort.onDeleted = function (key, result) {
         if (!result) {
@@ -87,4 +112,11 @@ $(document).ready(function () {
             $("#loglistport-collection-" + key).remove();
         }
     };
+
+    if ($("#doc-root").length > 0)
+    {
+        $.getJSON("/yuuko/gets/DocumentListPort", null, function (data) {
+            MakeCategory(data, $("#doc-root"));
+        });
+    }
 });

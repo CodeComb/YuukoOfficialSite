@@ -234,3 +234,25 @@ hr {
 .yuuko-title {
     font-size: 48px;
 }
+
+.yuuko-left {
+    float: left;
+    width: 200px;
+}
+
+.yuuko-right {
+    float:right;
+    width: 680px;
+}
+
+ul {
+    padding-left: 10px;
+}
+
+li {
+    list-style: none;
+}
+
+#hide {
+    display: none;
+}

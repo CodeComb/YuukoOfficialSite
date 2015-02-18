@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Documents";
+}
+
+<div class="yuuko-left">
+    <ul id="doc-root"></ul>
+</div>
+<div class="yuuko-right" data-detail="DocumentPort">
+    <h1 class="yuuko-title" data-field="DocumentPort.Title">Yuuko Documents</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p id="hide"><small>Updated on $DocumentPort._LastUpdateTime <a href="/admin/document/$DocumentPort.ID">Edit</a> <a href="javascript:DeletePort('DocumentPort', $DocumentPort.ID)">Delete</a></small></p>
+    }
+    else
+    {
+        <p id="hide"><small>Updated on $DocumentPort._LastUpdateTime</small></p>
+    }
+    <div data-field="DocumentPort.Content">
+        Select a namespace or class from the left category to start.
+    </div>
+</div>
+<div style="clear:both"></div>
+
+@if (Request.RequestContext.RouteData.Values["id"] != null)
+{
+    <script>
+    Detail.DocumentPort = @Request.RequestContext.RouteData.Values["id"];
+    </script>
+}
