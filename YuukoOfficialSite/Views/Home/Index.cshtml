@@ -75,12 +75,12 @@ namespace YuukoOfficialSite.Models
 }</code></pre>
 </div>
 <p>Now, you can build html files with yuuko ports, lets have a try!</p>
-<p>To create a hello.html into the current project, and make a reference to <code>jquery.js</code> and <code>yuuko.js</code></p>
+<p>To create a hello.html into the current project, and make a reference to <code>jquery.js</code> and <code>jquery.yuuko.min.js</code></p>
 <div class="highlight">
     <pre><code class="language-html" data-lang="html">&lt;html&gt;
     &lt;head&gt;
         &lt;script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"&gt;&lt;/script&gt;
-        &lt;script type="text/javascript" src="~/Scripts/yuuko.js"&gt;&lt;/script&gt;
+<span class="hll">        &lt;script type="text/javascript" src="~/Scripts/jquery.yuuko.min.js"&gt;&lt;/script&gt;</span><span class="hll">        &lt;script type="text/javascript" src="~/yuuko/js"&gt;&lt;/script&gt;</span>
     &lt;/head&gt;
     &lt;body&gt;
         &lt;div data-collection="TestPort" data-method="flow"&gt;

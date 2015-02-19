@@ -9,7 +9,7 @@
     <h1 class="yuuko-title" data-field="DocumentPort.Title">Yuuko Documents</h1>
     @if (User.Identity.IsAuthenticated)
     {
-        <p id="hide"><small>Updated on $DocumentPort._LastUpdateTime <a href="/admi/document/$DocumentPort.ID">Edit</a> <a href="javascript:DeletePort('DocumentPort', $DocumentPort.ID)">Delete</a></small></p>
+        <p id="hide"><small>Updated on $DocumentPort._LastUpdateTime <a href="/admin/document/$DocumentPort.ID">Edit</a> <a href="javascript:DeletePort('DocumentPort', $DocumentPort.ID)">Delete</a></small></p>
     }
     else
     {

@@ -14,7 +14,7 @@ namespace YuukoOfficialSite.Models
             if (Model.Children != null)
             {
                 Children = new List<DocumentListViewModel>();
-                foreach (var c in Model.Children)
+                foreach (var c in Model.Children.OrderByDescending(x=>x.PRI))
                     Children.Add(new DocumentListViewModel(c));
             }
         }

@@ -114,7 +114,9 @@ hr {
     z-index:3;
     position: relative;
     margin-top: 5px;
+    word-wrap: break-word;
 }
+
 
 .yuuko-nav-hide {
     height: 12px;
@@ -251,6 +253,7 @@ ul {
 
 li {
     list-style: none;
+    line-height: 1.5;
 }
 
 #hide {
