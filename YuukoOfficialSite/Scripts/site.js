@@ -62,6 +62,7 @@ function Highlight()
 }
 
 $(document).ready(function () {
+    $("#hide").hide();
     Highlight();
 
     if ($("#disqus_thread").length > 0)

@@ -20,10 +20,9 @@
     </div>
 </div>
 <div style="clear:both"></div>
-
 @if (Request.RequestContext.RouteData.Values["id"] != null)
 {
     <script>
-    Detail.DocumentPort = @Request.RequestContext.RouteData.Values["id"];
+        Detail.DocumentPort = @Request.RequestContext.RouteData.Values["id"];
     </script>
 }
