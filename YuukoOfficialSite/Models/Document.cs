@@ -33,6 +33,7 @@ namespace YuukoOfficialSite.Models
         public virtual ICollection<Document> Children { get; set; }
 
         [AutoTime]
+        [JsonIgnore]
         public DateTime LastUpdateTime { get; set; }
 
         [NotMapped]
